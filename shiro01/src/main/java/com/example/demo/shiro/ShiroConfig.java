@@ -2,8 +2,12 @@ package com.example.demo.shiro;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -48,8 +52,13 @@ public class ShiroConfig {
     }
 
     /**
-     * 凭证匹配器
+     * 密码校验规则HashedCredentialsMatcher
+     * 这个类是为了对密码进行编码的 ,
+     * 防止密码在数据库里明码保存 , 当然在登陆认证的时候 ,
+     * 这个类也负责对form里输入的密码进行编码
+     * 处理认证匹配处理器：如果自定义需要实现继承HashedCredentialsMatcher
      *
+     * 凭证匹配器
      * @return
      */
     @Bean
@@ -57,7 +66,7 @@ public class ShiroConfig {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
         //md5加密1次
         hashedCredentialsMatcher.setHashAlgorithmName("md5");
-        hashedCredentialsMatcher.setHashIterations(1);
+        hashedCredentialsMatcher.setHashIterations(2);
         return hashedCredentialsMatcher;
     }
 
@@ -88,7 +97,37 @@ public class ShiroConfig {
 
 
 
+    /**
+     * Spring的一个bean , 由Advisor决定对哪些类的方法进行AOP代理 .
+     * @return
+     */
+    @Bean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
+        creator.setProxyTargetClass(true);
+        return creator;
+    }
 
+    /**
+     * 配置shiro跟spring的关联
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(@Qualifier("securityManager") SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager);
+        return advisor;
+    }
+
+    /**
+     * lifecycleBeanPostProcessor是负责生命周期的 , 初始化和销毁的类
+     * (可选)
+     */
+    @Bean("lifecycleBeanPostProcessor")
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
+    }
 
 
 
