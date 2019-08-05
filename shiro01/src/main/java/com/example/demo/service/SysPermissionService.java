@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.model.SysPermission;
+
 import java.util.List;
 
 /**
@@ -10,5 +12,5 @@ import java.util.List;
  */
 public interface SysPermissionService {
 
-   List<String> selectPermissionByUserId(Long userId);
+   List<SysPermission> selectPermissionByUserId(Long userId);
 }

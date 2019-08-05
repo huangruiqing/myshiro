@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.model.SysPermission;
+import com.example.demo.model.SysRole;
 import com.example.demo.model.SysUser;
 
 import java.util.List;
@@ -16,4 +18,9 @@ public interface SysUserService {
     SysUser selectById(Long id);
 
     List<SysUser> getUsers();
+    //获取用户所有角色
+    List<SysRole> getUserSysRolesByUserId(Long userId);
+
+    List<SysPermission> gerUserPermissionByUserId(Long userId);
+
 }

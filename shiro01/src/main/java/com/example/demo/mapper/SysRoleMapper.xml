@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.SysRoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.model.SysRole">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <id column="role_code" jdbcType="VARCHAR" property="roleCode"/>
+        <id column="role_name" jdbcType="VARCHAR" property="roleNode"/>
+        <id column="type" jdbcType="VARCHAR" property="type"/>
+        <id column="state" jdbcType="VARCHAR" property="state"/>
+    </resultMap>
+    
+    <select id="sysRoleByRoleCodes" resultMap="BaseResultMap">
+        select * from sys_role where role_code in
+        <foreach collection="list" separator="," open="(" close=")" item="code" >
+            #{code}
+        </foreach>;
+    </select>
+    
+</mapper>

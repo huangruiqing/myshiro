@@ -1,15 +1,16 @@
 package com.example.demo.model;
 
 /**
- * @ClassName SysUserRoleMapper
+ * @ClassName SysRolePermission
  * @Description
  * @Author huangrq
- * @Date 2019/8/2 16:39
+ * @Date 2019/8/5 14:26
  */
-public class SysUserRole {
+public class SysRolePermission {
+
     private Long id;
-    private Long user_id;
     private String roleCode;
+    private String permissionCode;
 
     public Long getId() {
         return id;
@@ -19,19 +20,19 @@ public class SysUserRole {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
-    }
-
     public String getRoleCode() {
         return roleCode;
     }
 
     public void setRoleCode(String roleCode) {
         this.roleCode = roleCode;
+    }
+
+    public String getPermissionCode() {
+        return permissionCode;
+    }
+
+    public void setPermissionCode(String permissionCode) {
+        this.permissionCode = permissionCode;
     }
 }

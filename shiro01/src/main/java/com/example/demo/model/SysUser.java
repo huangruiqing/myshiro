@@ -1,12 +1,17 @@
 package com.example.demo.model;
 
+import com.example.demo.model.base.BaseJsonModel;
+
+import java.io.Serializable;
+
 /**
  * @ClassName SysUser
  * @Description
  * @Author huangrq
  * @Date 2019/7/24 15:52
  */
-public class SysUser {
+public class SysUser extends BaseJsonModel implements Serializable {
+    private static final long serialVersionUID = -2586507694970597655L;
     private Long id;
     private String userName;
     private String userAccount;

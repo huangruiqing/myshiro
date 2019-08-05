@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.demo.dao.SysUserMapper">
-<resultMap id="ResultMapSysUser" type="com.example.demo.model.SysUser">
+
+<resultMap id="BaseResultMap" type="com.example.demo.model.SysUser">
     <id column="id" jdbcType="BIGINT" property="id"/>
     <id column="user_name" jdbcType="VARCHAR" property="userName"/>
     <id column="user_account" jdbcType="VARCHAR" property="userAccount"/>
@@ -11,15 +12,15 @@
 </resultMap>
 
 
-    <select id="getSysUsers" resultMap="ResultMapSysUser">
+    <select id="getSysUsers" resultMap="BaseResultMap" >
         select * from sys_user;
     </select>
 
-    <select id="findByUserName" resultMap="ResultMapSysUser" parameterType="string">
+    <select id="findByUserName" resultMap="BaseResultMap" parameterType="string">
         select * from sys_user where user_name = #{userName};
     </select>
 
-    <select id="queryById" resultMap="ResultMapSysUser" parameterType="long">
+    <select id="queryById" resultMap="BaseResultMap" parameterType="long">
         select * from sys_user where id = #{id};
     </select>
 

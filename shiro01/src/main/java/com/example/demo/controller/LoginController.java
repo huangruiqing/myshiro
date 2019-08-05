@@ -36,12 +36,12 @@ public class LoginController {
         if (SecurityUtils.getSubject().isAuthenticated()) {
             return "redirect:/index";
         }
-        return "login";
+        return "loginPage";
     }
 
     /**
      * post表单提交，登录
-     * @param username
+     * @param
      * @param password
      * @param model
      * @return
@@ -52,6 +52,7 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
         try {
             //shiro帮我们匹配密码什么的，我们只需要把东西传给它，它会根据我们在UserRealm里认证方法设置的来验证
+        //    token.setRememberMe(true);
             user.login(token);
             return "redirect:/index";
         } catch (UnknownAccountException e) {
@@ -68,7 +69,7 @@ public class LoginController {
             model.addAttribute("message", "未知错误！");
             logger.error("登录异常未知错误！msg:{}",e.getMessage(),e);
         }
-        return "login";
+        return "loginPage";
     }
 
     /**
@@ -78,7 +79,7 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout() {
         SecurityUtils.getSubject().logout();
-        return "login";
+        return "loginPage";
     }
 
 }

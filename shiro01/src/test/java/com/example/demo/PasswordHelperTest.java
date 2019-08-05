@@ -32,12 +32,12 @@ public class PasswordHelperTest {
         user.setPassword("admin");
         passwordHelper.encryptPassword(user);
         System.out.println(user);*/
-        testEncryption();
+
     }
 
 
     @Test
-    public static void testEncryption() {
+    public void testEncryption() {
         String hashAlgorithmName = "md5";//加密方式
         Object passwd = "1";//密码原值
         String saltStr = "1";//盐值

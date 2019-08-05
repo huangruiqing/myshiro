@@ -1,5 +1,7 @@
 package com.example.demo.dao;
 
+import com.example.demo.model.SysPermission;
+
 import java.util.List;
 
 /**
@@ -9,5 +11,8 @@ import java.util.List;
  * @Date 2019/7/24 19:22
  */
 public interface SysPermissionMapper {
-    List<String> queryPermissionByUserId(Long userId);
+
+    List<SysPermission> queryPermissionByCode(Long userId);
+
+    List<SysPermission> getSysPermissionByCode(List<String> permissionCodes);
 }

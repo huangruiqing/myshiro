@@ -24,7 +24,7 @@ public class IndexController {
     public String index(Model model) {
         SysUser sysUser = (SysUser) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("userName", sysUser.getUserName());
-        return "index";
+        return "indexPage";
     }
 
 }

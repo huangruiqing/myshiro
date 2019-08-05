@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.SysUserRoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.model.SysUserRole" >
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <id column="user_id" jdbcType="BIGINT" property="userId"/>
+        <id column="role_code" jdbcType="VARCHAR" property="roleCode"/>
+    </resultMap>
+    
+    <select id="userRolesByUserId" resultMap="BaseResultMap" >
+        select * from sys_user_role where user_id = #{userId};
+    </select>
+    
+</mapper>
