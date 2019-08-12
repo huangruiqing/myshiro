@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @Author huangrq
  * @Date 2019/7/24 15:52
  */
-public class SysUser extends BaseJsonModel implements Serializable {
+public class SysUser extends BaseJsonModel {
     private static final long serialVersionUID = -2586507694970597655L;
     private Long id;
     private String userName;

@@ -4,8 +4,8 @@
 
     <resultMap id="BaseResultMap" type="com.example.demo.model.SysRolePermission">
         <id column="id" jdbcType="BIGINT" property="id"/>
-        <id column="user_id" jdbcType="BIGINT" property="userId"/>
         <id column="role_code" jdbcType="VARCHAR" property="roleCode"/>
+        <id column="permission_code" jdbcType="VARCHAR" property="permissionCode"/>
     </resultMap>
 
     <select id="getRolePermissionsByRoleCodes" parameterType="long" resultMap="BaseResultMap">

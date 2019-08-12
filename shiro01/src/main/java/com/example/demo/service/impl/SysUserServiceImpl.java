@@ -61,7 +61,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public List<SysRole> getUserSysRolesByUserId(Long userId) {
         List<SysUserRole> sysUserRoles =sysUserRoleService.userRolesByUserId(userId);
-        logger.info("查询用户所有的角色关系 入参{},结果{}",userId,JSONObject.toJSON(sysUserRoles));
+        logger.info("查询用户所有的角色关系 入参{},结果{}",userId,sysUserRoles);
         if(!sysUserRoles.isEmpty()) {
             List<String> roleCodes = new ArrayList<>();
             for (SysUserRole sysUserRole : sysUserRoles){
@@ -75,7 +75,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public List<SysPermission> gerUserPermissionByUserId(Long userId) {
         List<SysUserRole> sysUserRoles =sysUserRoleService.userRolesByUserId(userId);
-        logger.info("查询用户所有的角色关系 入参{},结果{}",userId,JSONObject.toJSON(sysUserRoles));
+        logger.info("step 1、查询用户所有的角色权限关系 入参:{},结果:{}",userId,JSONObject.toJSON(sysUserRoles));
         if(!sysUserRoles.isEmpty()) {
             List<String> roleCodes = new ArrayList<>();
             for (SysUserRole sysUserRole : sysUserRoles){
@@ -87,7 +87,9 @@ public class SysUserServiceImpl implements SysUserService {
                 for (SysRolePermission sysRolePermission : sysRolePermissions) {
                     permissionCodes.add(sysRolePermission.getPermissionCode());
                 }
-                return sysPermissionMapper.getSysPermissionByCode(permissionCodes);
+                 List<SysPermission> sysPermissions = sysPermissionMapper.getSysPermissionByCode(permissionCodes);
+                logger.info("step 2、查询用户所有的角色权限关系 入参:{},结果:{}",permissionCodes,sysPermissions);
+                return  sysPermissions;
             }
         }
         return  null;

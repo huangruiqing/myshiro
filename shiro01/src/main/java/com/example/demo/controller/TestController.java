@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.FastjsonTest;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,8 @@ public class TestController {
      * @return
      */
     @RequestMapping("/test2")
-    @RequiresPermissions("systemUserAdd")
+    //@RequiresPermissions(value={"user:add","user:remove"}, logical = Logical.OR)//用于其一
+    @RequiresPermissions(value={"user:add"}, logical = Logical.AND)//同时有
     public String test2(){
         return "test2";
     }

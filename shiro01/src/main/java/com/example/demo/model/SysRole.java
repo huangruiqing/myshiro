@@ -1,12 +1,15 @@
 package com.example.demo.model;
 
+import com.example.demo.model.base.BaseJsonModel;
+
 /**
  * @ClassName SysRole
  * @Description
  * @Author huangrq
  * @Date 2019/8/2 16:23
  */
-public class SysRole {
+public class SysRole extends BaseJsonModel {
+    private static final long serialVersionUID = 2645216825283596443L;
     private Long id;
     private String roleCode;
     private String roleName;

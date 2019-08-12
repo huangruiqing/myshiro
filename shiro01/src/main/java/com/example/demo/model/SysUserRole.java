@@ -1,12 +1,15 @@
 package com.example.demo.model;
 
+import com.example.demo.model.base.BaseJsonModel;
+
 /**
  * @ClassName SysUserRoleMapper
  * @Description
  * @Author huangrq
  * @Date 2019/8/2 16:39
  */
-public class SysUserRole {
+public class SysUserRole extends BaseJsonModel {
+    private static final long serialVersionUID = -7403413447539936491L;
     private Long id;
     private Long userId;
     private String roleCode;

@@ -1,15 +1,19 @@
 package com.example.demo.model;
 
+import com.example.demo.model.base.BaseJsonModel;
+
 /**
  * @ClassName SysPermission
  * @Description
  * @Author huangrq
  * @Date 2019/8/2 16:23
  */
-public class SysPermission {
+public class SysPermission extends BaseJsonModel {
+    private static final long serialVersionUID = -5465371493823861235L;
     private Long id;
     private String permissionName;
     private String permissionCode;
+    private String permission;
     private String url;
     private String type;
     private String state;
@@ -32,6 +36,14 @@ public class SysPermission {
 
     public String getPermissionCode() {
         return permissionCode;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
 
     public void setPermissionCode(String permissionCode) {
