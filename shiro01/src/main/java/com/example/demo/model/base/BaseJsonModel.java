@@ -5,6 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializeFilter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -46,7 +47,7 @@ import java.util.UUID;
  * @Author huangrq
  * @Date 2019/8/5 20:16
  */
-public abstract class BaseJsonModel {
+public abstract class BaseJsonModel implements Serializable {
 
     private static final long serialVersionUID = -201908052012593517L;
     private transient SerializerFeature[] features = new SerializerFeature[3];

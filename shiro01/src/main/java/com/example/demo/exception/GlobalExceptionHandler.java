@@ -1,6 +1,7 @@
 package com.example.demo.exception;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.model.base.RespJsonData;
 import com.example.demo.util.CommonUtil;
 import com.example.demo.util.contants.ErrorEnum;
 import org.apache.shiro.authz.UnauthenticatedException;
@@ -48,7 +49,7 @@ public class GlobalExceptionHandler {
 	 * 所以定义了这个拦截器
 	 */
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-	public JSONObject httpRequestMethodHandler(HttpRequestMethodNotSupportedException e) {
+	public RespJsonData httpRequestMethodHandler(HttpRequestMethodNotSupportedException e) {
 		logger.error("请求方法错误的拦截器>>>{}",e.getMessage(),e);
 		return CommonUtil.errorJson(ErrorEnum.E_500);
 	}
@@ -59,7 +60,7 @@ public class GlobalExceptionHandler {
 	 * 常见使用场景是参数校验失败,抛出此错,返回错误信息给前端
 	 */
 	@ExceptionHandler(CommonJsonException.class)
-	public JSONObject commonJsonExceptionHandler(CommonJsonException commonJsonException) {
+	public RespJsonData commonJsonExceptionHandler(CommonJsonException commonJsonException) {
 		logger.error("统自定义错误的拦截器>>>>{}",commonJsonException.getMessage(),commonJsonException);
 		return commonJsonException.getResultJson();
 	}
@@ -68,7 +69,7 @@ public class GlobalExceptionHandler {
 	 * 权限不足报错拦截
 	 */
 	@ExceptionHandler(UnauthorizedException.class)
-	public JSONObject unauthorizedExceptionHandler(UnauthorizedException e) {
+	public RespJsonData unauthorizedExceptionHandler(UnauthorizedException e) {
 		logger.error("权限不足报错拦截>>>>>>>>>{}",e.getMessage());
 		return CommonUtil.errorJson(ErrorEnum.E_502);
 	}
@@ -78,7 +79,7 @@ public class GlobalExceptionHandler {
 	 * 在请求需要权限的接口,而连登录都还没登录的时候,会报此错
 	 */
 	@ExceptionHandler(UnauthenticatedException.class)
-	public JSONObject unauthenticatedException(UnauthenticatedException e) {
+	public RespJsonData unauthenticatedException(UnauthenticatedException e) {
 		logger.error("未登录报错拦截>>>>>>>>>{}",e.getMessage());
 		return CommonUtil.errorJson(ErrorEnum.E_20011);
 	}

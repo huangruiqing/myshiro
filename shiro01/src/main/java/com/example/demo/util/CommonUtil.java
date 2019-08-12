@@ -2,6 +2,7 @@ package com.example.demo.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.exception.CommonJsonException;
+import com.example.demo.model.base.RespJsonData;
 import com.example.demo.util.contants.Constants;
 import com.example.demo.util.contants.ErrorEnum;
 import org.springframework.util.StringUtils;
@@ -37,11 +38,11 @@ public class CommonUtil {
     /**
      * 返回错误信息JSON
      */
-    public static JSONObject errorJson(ErrorEnum errorEnum) {
-        JSONObject resultJson = new JSONObject();
-        resultJson.put("code", errorEnum.getErrorCode());
-        resultJson.put("msg", errorEnum.getErrorMsg());
-        resultJson.put("info", new JSONObject());
+    public static RespJsonData errorJson(ErrorEnum errorEnum) {
+        RespJsonData resultJson = new RespJsonData();
+        resultJson.setErrorCode(errorEnum.getErrorCode());
+        resultJson.setMessage(errorEnum.getErrorMsg());
+        resultJson.setSuccess(false);
         return resultJson;
     }
 

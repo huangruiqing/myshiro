@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -38,12 +39,17 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSuccessUrl("/welcome");
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
 
+        Map<String, Filter> filterMap = new LinkedHashMap<>();
+        filterMap.put("authc", new AjaxPermissionsAuthorizationFilter());
+        shiroFilterFactoryBean.setFilters(filterMap);//返回json提示信息
+
         //注意此处使用的是LinkedHashMap，是有顺序的，shiro会按从上到下的顺序匹配验证，匹配了就不再继续验证
         //所以上面的url要苛刻，宽松的url要放在下面，尤其是"/**"要放到最下面，如果放前面的话其后的验证规则就没作用了。
+        // anon：它对应的过滤器里面是空的,什么都没做,这里.do和.jsp后面的*表示参数,比方说login.jsp?main这种
+        //authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/static/**", "anon");
-     /*   filterChainDefinitionMap.put("/login", "anon");*/
-        filterChainDefinitionMap.put("/login", "anon");//登录接口2
+        filterChainDefinitionMap.put("/login", "anon");
         filterChainDefinitionMap.put("/captcha.jpg", "anon");
         filterChainDefinitionMap.put("/favicon.ico", "anon");
         filterChainDefinitionMap.put("/logout", "anon");
