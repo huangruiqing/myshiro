@@ -60,7 +60,7 @@ public class UserRealm extends AuthorizingRealm {
         logger.info("doGetAuthorizationInfo 授权");
         return info;*/
 
-       logger.info("");
+       logger.info("授权查询");
 
         SysUser userweb = (SysUser) principals.getPrimaryPrincipal(); //获取前端输入的用户信息，封装为User对象
 

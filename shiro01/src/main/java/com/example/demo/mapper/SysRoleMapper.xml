@@ -5,7 +5,7 @@
     <resultMap id="BaseResultMap" type="com.example.demo.model.SysRole">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <id column="role_code" jdbcType="VARCHAR" property="roleCode"/>
-        <id column="role_name" jdbcType="VARCHAR" property="roleNode"/>
+        <id column="role_name" jdbcType="VARCHAR" property="roleName"/>
         <id column="type" jdbcType="VARCHAR" property="type"/>
         <id column="state" jdbcType="VARCHAR" property="state"/>
     </resultMap>

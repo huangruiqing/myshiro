@@ -42,9 +42,11 @@ public class ShiroConfig {
         //所以上面的url要苛刻，宽松的url要放在下面，尤其是"/**"要放到最下面，如果放前面的话其后的验证规则就没作用了。
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/login", "anon");
+     /*   filterChainDefinitionMap.put("/login", "anon");*/
+        filterChainDefinitionMap.put("/login", "anon");//登录接口2
         filterChainDefinitionMap.put("/captcha.jpg", "anon");
         filterChainDefinitionMap.put("/favicon.ico", "anon");
+        filterChainDefinitionMap.put("/logout", "anon");
         filterChainDefinitionMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -129,6 +131,50 @@ public class ShiroConfig {
         return new LifecycleBeanPostProcessor();
     }
 
+
+
+   /*  //1 自定义sessionManager，用户的唯一标识，即Token或Authorization的认证
+    @Bean
+    public SessionManager sessionManager() {
+        MySessionManager mySessionManager = new MySessionManager();
+        mySessionManager.setSessionDAO(redisSessionDAO());
+        return mySessionManager;
+    }
+
+    // 2 配置shiro redisManager 使用的是shiro-redis开源插件
+    public RedisManager redisManager() {
+        RedisManager redisManager = new RedisManager();
+        redisManager.setHost("127.0.0.1:6379");
+        redisManager.setPassword("BaiWang@2019Xm*01");
+        redisManager.setTimeout(10000);
+        return redisManager;
+    }
+
+    @Bean
+    public RedisSessionDAO redisSessionDAO() {
+        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+        // 自定义session管理 使用redis
+        redisSessionDAO.setRedisManager(redisManager());
+        return redisSessionDAO;
+    }
+
+
+    //3.此处对应前端“记住我”的功能，获取用户关联信息而无需登录
+    @Bean
+    public SimpleCookie rememberMeCookie(){
+        //这个参数是cookie的名称，对应前端的checkbox的name = remember
+        SimpleCookie simpleCookie = new SimpleCookie("remember");
+        simpleCookie.setMaxAge(259200);
+        return simpleCookie;
+    }
+
+    @Bean
+    public CookieRememberMeManager rememberMeManager(){
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        cookieRememberMeManager.setCookie(rememberMeCookie());
+        cookieRememberMeManager.setCipherKey(Base64.decode("one"));
+        return cookieRememberMeManager;
+    }*/
 
 
 }

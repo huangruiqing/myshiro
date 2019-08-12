@@ -9,7 +9,7 @@ package com.example.demo.model;
 public class SysRole {
     private Long id;
     private String roleCode;
-    private String roleNmae;
+    private String roleName;
     private String type;//类型 菜单 / 按钮
     private String state;// 使用状态
 
@@ -29,12 +29,12 @@ public class SysRole {
         this.roleCode = roleCode;
     }
 
-    public String getRoleNmae() {
-        return roleNmae;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRoleNmae(String roleNmae) {
-        this.roleNmae = roleNmae;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getType() {

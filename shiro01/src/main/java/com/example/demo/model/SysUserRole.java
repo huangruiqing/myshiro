@@ -8,7 +8,7 @@ package com.example.demo.model;
  */
 public class SysUserRole {
     private Long id;
-    private Long user_id;
+    private Long userId;
     private String roleCode;
 
     public Long getId() {
@@ -19,12 +19,12 @@ public class SysUserRole {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getRoleCode() {

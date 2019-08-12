@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -77,8 +78,16 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/logout")
-    public String logout() {
-        SecurityUtils.getSubject().logout();
+    public String logout(Model model) {
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.isAuthenticated()) {
+            SysUser sysUser = (SysUser) subject.getPrincipal();
+            subject.logout(); // session 会销毁，在SessionListener监听session销毁，清理权限缓存
+            if (logger.isDebugEnabled()) {
+                logger.debug("用户" + sysUser.getUserName() + "退出登录");
+            }
+        }
+        model.addAttribute("message","had logout");
         return "loginPage";
     }
 
